@@ -30,25 +30,22 @@ public class HladacPokladov {
     }
 
     // Zaregistruje pohyb cez vypis vo virtualnom stroji a podla pismenka vyvola pohyb na suradnice.
-    public void vykonajPohyb(String pohyb) throws  MimoMapyException{
+    public Point vykonajPohyb(String pohyb) throws  MimoMapyException{
         switch (pohyb) {
             case "P":
-                pohyb(1, 0);
-                break;
+                return pohyb(1, 0);
             case "H":
-                pohyb(0, 1);
-                break;
+                return pohyb(0, 1);
             case "D":
-                pohyb(0,-1);
-                break;
+                return pohyb(0,-1);
             case "L":
-                pohyb(-1,0);
-                break;
+                return pohyb(-1,0);
         }
+        return null;
     }
 
     // Aktualizuj poziciiu hladaca a vyhod vynimku ak siahne mimo mapy
-    private void pohyb(int pohybX, int pohybY) throws MimoMapyException{
+    private Point pohyb(int pohybX, int pohybY) throws MimoMapyException{
         aktPozicia.x += pohybX;
         aktPozicia.y += pohybY;
 
@@ -64,11 +61,16 @@ public class HladacPokladov {
             pocPokladov++;
         }
 
+        return (Point)aktPozicia.clone();
+
 
          //System.out.println("X > " + aktPozicia.x + ", Y >" + aktPozicia.y + ", POKLADY = " + pocPokladov);
 
     }
 
+    public Point getStart() {
+        return start;
+    }
 
     public int getPocNajdenychPokladov() {
         return pocPokladov;

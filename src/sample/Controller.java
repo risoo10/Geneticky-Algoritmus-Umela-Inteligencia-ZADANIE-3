@@ -7,7 +7,21 @@ import com.jfoenix.controls.JFXTextField;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 
+import java.awt.*;
+
 public class Controller {
+
+    @FXML
+    private JFXTextField riesenieKroky;
+
+    @FXML
+    private JFXTextField riesenieFitness;
+
+    @FXML
+    private JFXTextArea rieseniePohyb;
+
+    @FXML
+    private JFXTextField rieseniePoklady;
 
     @FXML
     private JFXTextField mriezkaY;
@@ -49,13 +63,28 @@ public class Controller {
 
         HladacPokladov h = new HladacPokladov(Integer.parseInt(startX.getText()), Integer.parseInt(startY.getText()), mapa);
 
-        GenetickyAlgoritmus g = new GenetickyAlgoritmus( mapa, h, 0.2 );
+        GenetickyAlgoritmus g = new GenetickyAlgoritmus( mapa, h, Double.parseDouble(mutaciaField.getText()) );
 
+        // Vypisanie riesenia
         Jedinec j = g.proces();
+        VirtualnyStroj vm = new VirtualnyStroj(mapa, h);
+        vm.setVypisRiesenie(true);
+        vm.spustiProgram(j);
 
-        System.out.println("KONIEC : JEDINEC [ fit: " + j.getFitness() +
-                            " || poklady: " + j.getPocetNajdenychPokladov() +
-                            " || kroky: " + j.getPocetKrokov() + " ]");
+        riesenieFitness.setText(j.getFitness()+"");
+        rieseniePoklady.setText(j.getPocetNajdenychPokladov()+"");
+        riesenieKroky.setText(j.getPocetKrokov()+"");
+        rieseniePohyb.setText("");
+        int pohyby = j.getPohybySize();
+        rieseniePohyb.appendText("Zacina na X=" + h.getStart().x + " , Y=" + h.getStart().y + " \n");
+        for(int i=0; i<pohyby; i++){
+            Point p = j.vyberPrvyPohyb();
+            if(i != (pohyby-1)) {
+                rieseniePohyb.appendText("hlada na X=" + p.x + " , Y=" + p.y + " \n");
+            } else {
+                rieseniePohyb.appendText("konci na X=" + p.x + " , Y=" + p.y + " \n");
+            }
+        }
 
 
 

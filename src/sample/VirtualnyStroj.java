@@ -1,5 +1,7 @@
 package sample;
 
+import java.awt.*;
+
 /**
  * Created by Riso on 4/2/2017.
  */
@@ -18,6 +20,7 @@ public class VirtualnyStroj {
     private int dekrem =  64;    // 01XX XXXX
     private int skok = 128;     // 10XX XXXX
     private int vypis =  192;    // 11XX XXXX
+    private boolean vypisRiesenie = false;
 
 
     public VirtualnyStroj(Mapa mapa, HladacPokladov hladacPokladov) {
@@ -84,20 +87,26 @@ public class VirtualnyStroj {
                 int pohyb = bunka % 4;
 
                 try {
+                    Point p = null;
                     switch (pohyb) {
                         case 0:
-                            hladacPokladov.vykonajPohyb("H");
+                            p = hladacPokladov.vykonajPohyb("H");
                             break;
                         case 1:
-                            hladacPokladov.vykonajPohyb("D");
+                            p = hladacPokladov.vykonajPohyb("D");
                             break;
                         case 2:
-                            hladacPokladov.vykonajPohyb("P");
+                            p = hladacPokladov.vykonajPohyb("P");
                             break;
                         case 3:
-                            hladacPokladov.vykonajPohyb("L");
+                            p = hladacPokladov.vykonajPohyb("L");
                             break;
                     }
+
+                    if(this.vypisRiesenie){
+                        jedinec.pridajNovyPohyb(p);
+                    }
+
                 } catch (MimoMapyException m){
                     break;
                 }
@@ -122,5 +131,7 @@ public class VirtualnyStroj {
 
     }
 
-
+    public void setVypisRiesenie(boolean vypisRiesenie) {
+        this.vypisRiesenie = vypisRiesenie;
+    }
 }

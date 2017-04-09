@@ -1,5 +1,8 @@
 package sample;
 
+import java.awt.*;
+import java.util.LinkedList;
+import java.util.Queue;
 import java.util.Random;
 
 /**
@@ -15,6 +18,7 @@ public class Jedinec {
     private int pocetKrokov;
     private Random rand = new Random();
     private int[] pamat = new int[pocetBuniek];
+    private Queue<Point> pohyby = new LinkedList<>();
 
 
     public Jedinec(){
@@ -102,5 +106,17 @@ public class Jedinec {
 
     public void setFitness(int fitness) {
         this.fitness = fitness;
+    }
+
+    public void pridajNovyPohyb(Point p){
+        pohyby.add(p);
+    }
+
+    public Point vyberPrvyPohyb(){
+        return pohyby.remove();
+    }
+
+    public int getPohybySize() {
+        return pohyby.size();
     }
 }
