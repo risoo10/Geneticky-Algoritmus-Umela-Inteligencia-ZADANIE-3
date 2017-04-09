@@ -48,9 +48,6 @@ public class Controller {
     private JFXTextField mutaciaField;
 
     @FXML
-    private JFXComboBox<?> selekciaCombobox;
-
-    @FXML
     void najdiRiesenie(ActionEvent event) {
 
         Mapa mapa = new Mapa(
@@ -85,6 +82,40 @@ public class Controller {
                 rieseniePohyb.appendText("konci na X=" + p.x + " , Y=" + p.y + " \n");
             }
         }
+
+
+
+    }
+
+    @FXML
+    void testujScenar(ActionEvent event) {
+
+        Mapa mapa = new Mapa(
+                Integer.parseInt(pocetPokladov.getText()),
+                Integer.parseInt(mriezkaX.getText()),
+                Integer.parseInt(mriezkaY.getText())
+        );
+
+        mapa.parsujPoklady(suradnicePokladov.getText());
+
+        HladacPokladov h = new HladacPokladov(Integer.parseInt(startX.getText()), Integer.parseInt(startY.getText()), mapa);
+
+        double priemerPoklady = 0;
+        double priemerPocetKrokov = 0;
+
+        for(int i=0; i<100; i++) {
+            GenetickyAlgoritmus g = new GenetickyAlgoritmus(mapa, h, Double.parseDouble(mutaciaField.getText()));
+            // Vypisanie riesenia
+            Jedinec j = g.proces();
+            priemerPocetKrokov += j.getPocetKrokov();
+            priemerPoklady += j.getPocetNajdenychPokladov();
+        }
+
+        priemerPocetKrokov /= 100;
+        priemerPoklady /= 100;
+
+        System.out.println("Testovany scenar || PRIEMER  poklady: " +priemerPoklady + "   kroky " + priemerPocetKrokov);
+
 
 
 

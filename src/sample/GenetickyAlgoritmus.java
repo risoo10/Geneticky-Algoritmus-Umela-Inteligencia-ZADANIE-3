@@ -17,7 +17,6 @@ public class GenetickyAlgoritmus {
     private HladacPokladov hladacPokladov;
     private VirtualnyStroj virtualnyStroj;
     private double pravdMutacie; // Pravdepobost mutaci
-    private Jedinec topJedinec;
 
 
     public GenetickyAlgoritmus(Mapa mapa, HladacPokladov hladacPokladov, double mutacie){
@@ -34,6 +33,10 @@ public class GenetickyAlgoritmus {
     }
 
     public Jedinec proces(){
+
+        // Vypisovanie fitness hodnot pre analyzu algoritmu
+//        System.out.println("PRIEMER;MAXIMUM;");
+
 
         int pocGeneracii = 0;
 
@@ -56,13 +59,21 @@ public class GenetickyAlgoritmus {
             // Porovnam podla fitness hodnoty oboch jedincov
             Comparator<Jedinec> cmprtr = new FitnessComparator();
             PriorityQueue<Jedinec> jedinciFronta = new PriorityQueue<>(cmprtr);
+            double priemerFitness = 0;
             for(int i = 0; i<pocetJedincov; i++){
-
+                priemerFitness += populacia[i].getFitness();
                 jedinciFronta.add(populacia[i]);
             }
 
+            priemerFitness /= pocetJedincov;
+
+            // Vypisovanie priemernej fitness hodnoty
+//             System.out.print(""+priemerFitness+";");
+
+
             // Ziskam maximalnu velkost fitness funkcie
             double maxFitness = jedinciFronta.peek().getFitness();
+//            System.out.print(""+maxFitness+";\n");
 
             // Elitarizmus - najlepsich 10% jedincov (podla fitness) sa automaticky naklonuje do novej populacie
             int pocElity = pocetJedincov / 10;

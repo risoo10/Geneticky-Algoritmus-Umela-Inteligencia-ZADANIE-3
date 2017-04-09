@@ -17,11 +17,11 @@
       <Label layoutX="30.0" layoutY="148.0" text="Štartovacia pozícia:" />
       <Label layoutX="34.0" layoutY="37.0" text="Rozmer miežky:" />
       <JFXTextField fx:id="startY" focusColor="#0090ff" layoutX="96.0" layoutY="176.0" prefHeight="51.0" prefWidth="40.0" promptText="[ Y ]" text="3" />
-      <JFXTextField fx:id="startX" focusColor="#0090ff" layoutX="27.0" layoutY="176.0" prefHeight="51.0" prefWidth="40.0" promptText="[ X ]" text="6" />
+      <JFXTextField fx:id="startX" focusColor="#0090ff" layoutX="27.0" layoutY="176.0" prefHeight="51.0" prefWidth="40.0" promptText="[ X ]" text="1" />
       <JFXTextField fx:id="pocetPokladov" focusColor="#0090ff" layoutX="24.0" layoutY="274.0" prefHeight="51.0" prefWidth="124.0" promptText="Počet pokladov" text="5" />
       <JFXTextArea fx:id="suradnicePokladov" focusColor="#0090ff" layoutX="25.0" layoutY="371.0" prefHeight="194.0" prefWidth="418.0" promptText="Súradnice pokladov X,Y" text="1,4&#10;2,2&#10;4,1&#10;4,5&#10;6,3" />
-      <JFXButton fx:id="submit" buttonType="RAISED" layoutX="25.0" layoutY="587.0" onAction="#najdiRiesenie" prefHeight="39.0" prefWidth="418.0" style="-fx-background-color: #0090ff;" text="Nájdi riešenie !" textFill="WHITE" />
-      <JFXTextField fx:id="mutaciaField" focusColor="#0090ff" layoutX="206.0" layoutY="58.0" prefHeight="51.0" prefWidth="114.0" text="0.2" />
+      <JFXButton fx:id="submit" buttonType="RAISED" layoutX="130.0" layoutY="587.0" onAction="#najdiRiesenie" prefHeight="39.0" prefWidth="313.0" style="-fx-background-color: #0090ff;" text="Nájdi riešenie !" textFill="WHITE" />
+      <JFXTextField fx:id="mutaciaField" focusColor="#0090ff" layoutX="206.0" layoutY="58.0" prefHeight="51.0" prefWidth="114.0" text="0.15" />
       <Label layoutX="23.0" layoutY="264.0" text="Počet pokladov:" />
       <Label layoutX="23.0" layoutY="343.0" text="Súradnice pokladov:" />
       <Label layoutX="206.0" layoutY="37.0" text="Pravdepodobnost mutácií:" />
@@ -74,5 +74,6 @@
             </VBox>
          </children>
       </AnchorPane>
+      <JFXButton buttonType="RAISED" layoutX="24.0" layoutY="587.0" onAction="#testujScenar" prefHeight="39.0" prefWidth="95.0" style="-fx-background-color: #ff4848;" text="Testuj !" textFill="WHITE" />
    </children>
 </AnchorPane>
