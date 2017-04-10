@@ -9,7 +9,7 @@ public class GenetickyAlgoritmus {
 
     // Konstanty
     public static final int pocetJedincov = 100;
-    public static final int maxPocetGeneracii = 200;
+    public static final int maxPocetGeneracii = 500;
 
     // Premenne
     private Jedinec[] populacia = new Jedinec[pocetJedincov];
